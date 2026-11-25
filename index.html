@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#05090b" />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23081112'/%3E%3Cpath d='M32 10c11 14 17 22 17 29a17 17 0 0 1-34 0c0-7 6-15 17-29Z' fill='%2358f2cf'/%3E%3C/svg%3E" />
+  <title>МОЙКА КОЗЛА — 3D</title>
+  <meta name="description"
+    content="Браузерная 3D-игра: козёл висит в воздухе, он грязный. Управляй брандспойтом мышью и отмой его до блеска." />
+  <script type="module" crossorigin src="./assets/index-BmdAJPDw.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-D6JIh_Wv.css">
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <div id="hud" class="hud" aria-hidden="false">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+            <path d="M12 3.2c3.4 4.2 5.4 7 5.4 9.6A5.4 5.4 0 0 1 12 18.2a5.4 5.4 0 0 1-5.4-5.4c0-2.6 2-5.4 5.4-9.6Z" />
+            <path d="M9.4 13.1c.4 1.4 1.4 2.2 2.6 2.2" opacity=".55" />
+          </svg>
+        </span>
+        <span class="brand__text">
+          <span class="brand__kicker">симулятор мойки · 3D</span>
+          <span class="brand__title">МОЙКА КОЗЛА</span>
+        </span>
+      </div>
+
+      <div class="readout">
+        <div class="meter">
+          <div class="meter__head">
+            <span class="meter__label">ЧИСТОТА</span>
+            <span class="meter__value"><span id="clean-value">0</span><i>%</i></span>
+          </div>
+          <div class="meter__track">
+            <div id="clean-bar" class="meter__fill"></div>
+          </div>
+        </div>
+        <div class="clock">
+          <span class="clock__label">ВРЕМЯ</span>
+          <span id="timer-value" class="clock__value">00:00.0</span>
+        </div>
+        <button id="sound-btn" class="sound-btn" type="button" title="Звук (M)" aria-label="Переключить звук">
+          <span class="sound-btn__wave"></span>
+        </button>
+      </div>
+    </header>
+
+    <div id="hint" class="hint">
+      <span class="hint__item"><kbd>ЛКМ</kbd> струя</span>
+      <span class="hint__dot"></span>
+      <span class="hint__item"><kbd>ПКМ</kbd> / фон — вращать</span>
+      <span class="hint__dot"></span>
+      <span class="hint__item"><kbd>колесо</kbd> зум</span>
+      <span class="hint__dot"></span>
+      <span class="hint__item"><kbd>R</kbd> заново</span>
+    </div>
+
+    <div id="status" class="status">
+      <span class="status__pulse"></span>
+      <span id="status-text">КОЗЁЛ В ОЖИДАНИИ МОЙКИ</span>
+    </div>
+  </div>
+
+  <div id="intro" class="screen screen--intro">
+    <div class="screen__glow"></div>
+    <div class="card">
+      <span class="card__kicker">браузерная 3D-игра · один козёл</span>
+      <h1 class="card__title">МОЙКА<br /><em>КОЗЛА</em></h1>
+      <p class="card__lead">
+        Он висит в воздухе, он чудовищно грязный. У тебя есть вода под давлением,
+        брандспойт и мышь. Смой каждое пятно.
+      </p>
+      <ul class="controls">
+        <li><kbd>ЛКМ</kbd> направить и держать струю</li>
+        <li><kbd>ПКМ</kbd> или драг по фону — вращать козла</li>
+        <li><kbd>колесо</kbd> приблизить · <kbd>A</kbd>/<kbd>D</kbd> покрутить</li>
+      </ul>
+      <button id="start-btn" class="btn btn--primary" type="button">
+        <span>НАЧАТЬ МОЙКУ</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M5 12h13M13 6l6 6-6 6" />
+        </svg>
+      </button>
+      <span class="card__foot">нужно отмыть 97% поверхности</span>
+    </div>
+  </div>
+
+  <div id="win" class="screen screen--win" hidden>
+    <div class="screen__glow screen__glow--win"></div>
+    <div class="card card--win">
+      <span class="card__kicker">поверхность чиста</span>
+      <h2 class="card__title card__title--win">ОТМЫТО</h2>
+      <p class="card__lead">Козёл блестит. Кажется, он даже доволен.</p>
+      <div class="winstats">
+        <div class="win-stat">
+          <span class="win-stat__label">ЧИСТОТА</span>
+          <span class="win-stat__value">100<i>%</i></span>
+        </div>
+        <div class="win-stat">
+          <span class="win-stat__label">ВРЕМЯ</span>
+          <span id="win-time" class="win-stat__value">00:00.0</span>
+        </div>
+      </div>
+      <button id="restart-btn" class="btn btn--primary" type="button">
+        <span>ЕЩЁ РАЗ</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M20 12a8 8 0 1 1-2.34-5.66" />
+          <path d="M20 4v5h-5" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="loading" class="loading">
+    <div class="loading__ring"></div>
+    <span>СОБИРАЕМ КОЗЛА</span>
+  </div>
+
+  <div class="vignette" aria-hidden="true"></div>
+</body>
+
+</html>
