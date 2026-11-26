@@ -13,8 +13,8 @@
   <title>МОЙКА КОЗЛА — 3D</title>
   <meta name="description"
     content="Браузерная 3D-игра: козёл висит в воздухе, он грязный. Управляй брандспойтом мышью и отмой его до блеска." />
-  <script type="module" crossorigin src="./assets/index-BSIsRYZP.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-C7G9xEPR.css">
+  <script type="module" crossorigin src="./assets/index-CR2IOFV5.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CtxzD1d9.css">
 </head>
 
 <body>
@@ -39,15 +39,10 @@
         <div class="meter">
           <div class="meter__head">
             <span class="meter__label">ЧИСТОТА</span>
-            <span class="meter__value"><span id="clean-value">0</span><i>%</i></span>
           </div>
           <div class="meter__track">
             <div id="clean-bar" class="meter__fill"></div>
           </div>
-        </div>
-        <div class="clock">
-          <span class="clock__label">ВРЕМЯ</span>
-          <span id="timer-value" class="clock__value">00:00.0</span>
         </div>
         <button id="sound-btn" class="sound-btn" type="button" title="Звук (M)" aria-label="Переключить звук">
           <span class="sound-btn__wave"></span>
@@ -83,8 +78,8 @@
       <span class="card__kicker">3D-игра · один козёл</span>
       <h1 class="card__title">МОЙКА<br /><em>КОЗЛА</em></h1>
       <p class="card__lead">
-        Он висит в воздухе, он чудовищно грязный. У тебя есть вода под давлением
-        и брандспойт. Смой каждое пятно.
+        Он висит в воздухе, он чудовищно грязный. Смой каждое пятно — но не спеши:
+        быстрые движения его бесят.
       </p>
       <ul class="controls controls--mouse">
         <li><kbd>ЛКМ</kbd> направить и держать струю</li>
@@ -101,7 +96,7 @@
           <path d="M5 12h13M13 6l6 6-6 6" />
         </svg>
       </button>
-      <span class="card__foot">нужно отмыть 97% поверхности</span>
+      <span class="card__foot">мой бережно — козёл не любит спешку</span>
     </div>
   </div>
 
@@ -111,18 +106,24 @@
       <span class="card__kicker">поверхность чиста</span>
       <h2 class="card__title card__title--win">ОТМЫТО</h2>
       <p class="card__lead">Козёл блестит. Кажется, он даже доволен.</p>
-      <div class="winstats">
-        <div class="win-stat">
-          <span class="win-stat__label">ЧИСТОТА</span>
-          <span class="win-stat__value">100<i>%</i></span>
-        </div>
-        <div class="win-stat">
-          <span class="win-stat__label">ВРЕМЯ</span>
-          <span id="win-time" class="win-stat__value">00:00.0</span>
-        </div>
-      </div>
       <button id="restart-btn" class="btn btn--primary" type="button">
         <span>ЕЩЁ РАЗ</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M20 12a8 8 0 1 1-2.34-5.66" />
+          <path d="M20 4v5h-5" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="lose" class="screen screen--lose" hidden>
+    <div class="screen__glow screen__glow--lose"></div>
+    <div class="card card--win">
+      <span class="card__kicker">терпение лопнуло</span>
+      <h2 class="card__title card__title--lose">КОЗЁЛ<br />ВЗБЕСИЛСЯ</h2>
+      <p class="card__lead">Слишком быстро и грубо. Мой неспешно — он это ценит.</p>
+      <button id="lose-restart-btn" class="btn btn--primary" type="button">
+        <span>ПОПРОБОВАТЬ СНОВА</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
           <path d="M20 12a8 8 0 1 1-2.34-5.66" />
           <path d="M20 4v5h-5" />
@@ -136,6 +137,7 @@
     <span>СОБИРАЕМ КОЗЛА</span>
   </div>
 
+  <div id="rage" class="rage" aria-hidden="true"></div>
   <div class="vignette" aria-hidden="true"></div>
 </body>
 
