@@ -5,13 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#05090b" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23081112'/%3E%3Cpath d='M32 10c11 14 17 22 17 29a17 17 0 0 1-34 0c0-7 6-15 17-29Z' fill='%2358f2cf'/%3E%3C/svg%3E" />
   <title>МОЙКА КОЗЛА — 3D</title>
   <meta name="description"
     content="Браузерная 3D-игра: козёл висит в воздухе, он грязный. Управляй брандспойтом мышью и отмой его до блеска." />
-  <script type="module" crossorigin src="./assets/index-DU_RbM2Q.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-D6JIh_Wv.css">
+  <script type="module" crossorigin src="./assets/index-Cm3W9-cU.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BgshUk8w.css">
 </head>
 
 <body>
@@ -52,7 +55,7 @@
       </div>
     </header>
 
-    <div id="hint" class="hint">
+    <div id="hint" class="hint hint--mouse">
       <span class="hint__item"><kbd>ЛКМ</kbd> струя</span>
       <span class="hint__dot"></span>
       <span class="hint__item"><kbd>ПКМ</kbd> / фон — вращать</span>
@@ -60,6 +63,12 @@
       <span class="hint__item"><kbd>колесо</kbd> зум</span>
       <span class="hint__dot"></span>
       <span class="hint__item"><kbd>R</kbd> заново</span>
+    </div>
+
+    <div class="hint hint--touch">
+      <span class="hint__item"><kbd>ПАЛЕЦ</kbd> струя</span>
+      <span class="hint__dot"></span>
+      <span class="hint__item"><kbd>2 ПАЛЬЦА</kbd> вращать · зум</span>
     </div>
 
     <div id="status" class="status">
@@ -71,16 +80,20 @@
   <div id="intro" class="screen screen--intro">
     <div class="screen__glow"></div>
     <div class="card">
-      <span class="card__kicker">браузерная 3D-игра · один козёл</span>
+      <span class="card__kicker">3D-игра · один козёл</span>
       <h1 class="card__title">МОЙКА<br /><em>КОЗЛА</em></h1>
       <p class="card__lead">
-        Он висит в воздухе, он чудовищно грязный. У тебя есть вода под давлением,
-        брандспойт и мышь. Смой каждое пятно.
+        Он висит в воздухе, он чудовищно грязный. У тебя есть вода под давлением
+        и брандспойт. Смой каждое пятно.
       </p>
-      <ul class="controls">
+      <ul class="controls controls--mouse">
         <li><kbd>ЛКМ</kbd> направить и держать струю</li>
         <li><kbd>ПКМ</kbd> или драг по фону — вращать козла</li>
         <li><kbd>колесо</kbd> приблизить · <kbd>A</kbd>/<kbd>D</kbd> покрутить</li>
+      </ul>
+      <ul class="controls controls--touch">
+        <li><kbd>ПАЛЕЦ</kbd> держи на козле — бьёт струя</li>
+        <li><kbd>2 ПАЛЬЦА</kbd> вращение и зум</li>
       </ul>
       <button id="start-btn" class="btn btn--primary" type="button">
         <span>НАЧАТЬ МОЙКУ</span>
